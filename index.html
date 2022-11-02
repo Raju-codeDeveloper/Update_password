@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Template_7</title>
+  <script src="https://kit.fontawesome.com/6534963be5.js" crossorigin="anonymous"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(to top, rgb(168, 55, 168), pink);
+      height: 100vh;
+    }
+    .wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      /* width: 400px; */
+      height: 350px;
+      /* border-radius: 14px; */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      /* background-color: #ffff; */
+      /* box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px; */
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: absolute;
+      top: 10%;
+    }
+
+    .inputs {
+      display: flex;
+      flex-direction: column;
+      width: 350px;
+    }
+
+    input {
+      height: 45px;
+      padding: 10px;
+      outline:none;
+      font-size: 19px;
+      border-radius: 3px;
+      border: none;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+
+    }
+
+    #updateBtn {
+      width: 100px;
+      height: 47px;
+      margin-top: 10px;
+      background-color: #3d1ac8ef;
+      color: #ffff;
+      font-size: 19px;
+      margin-bottom: 30px;
+      border: 0.01px solid rgb(236, 176, 176);
+      border-radius: 9px;
+      transition: 0.5s;
+      cursor: pointer;
+    }
+
+    .moveit {
+      transform: translate(260px);
+      
+    }
+   
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    label {
+      color: #ffff;
+      font-size: 0.9rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      color: #ffff;
+      margin-bottom: 40px;
+    }
+
+    .para {
+      margin-top: 10px;
+      color: #b0120c;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+
+
+    #error1 {
+      margin-bottom: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+
+
+  <div class="wrapper">
+
+    <div class="container">
+
+      <h1>Update Password</h1>
+
+      <form id="former">
+        <div class="inputs">
+          <label for="newPass">NEW PASSWORD</label>
+          <input type="password" class="input" id="newPass" placeholder="Create New password">
+          <div id="error1" class="para">
+
+          </div>
+          <label for="confirmPass">CONFIRM PASSWORD</label>
+          <input type="password" class="input" id="confirmPass" placeholder="Confirm Password">
+          <div id="error2" class="para">
+
+          </div>
+
+          <div class="loginBtn">
+            <input type="submit" id="updateBtn">
+          </div>
+
+
+      </form>
+
+    </div>
+
+
+  </div>
+
+
+  <script>
+    let former = document.getElementById("former")
+
+    former.addEventListener("submit", (event) => {
+      event.preventDefault()
+    })
+    let newPass = document.getElementById("newPass")
+    let confirmPass = document.getElementById("confirmPass")
+    let updateBtn = document.getElementById("updateBtn")
+
+    let error_box1 = document.getElementById("error1")
+    let error_box2 = document.getElementById("error2")
+
+
+    newPass.addEventListener("blur", (event) => {
+      if (newPass.value === "") {
+        error_box1.textContent = "Required*"
+        error_box1.classList.add("para")
+
+      }
+      else {
+        error_box1.textContent = ""
+      }
+    })
+
+    confirmPass.addEventListener("blur", (event) => {
+      if (confirmPass.value === "") {
+        error_box2.textContent = "Required*"
+        error_box2.classList.add("para")
+
+      }
+      else {
+        error_box2.textContent = ""
+      }
+    })
+
+  
+    updateBtn.addEventListener("mouseover", () => {
+      if (newPass.value && confirmPass.value !== "") {
+        if (newPass.value !== confirmPass.value) {
+          // error_box2.textContent = "password's must be same"
+          // error_box2.classList.add("para")
+          updateBtn.classList.toggle("moveit")
+          updateBtn.setAttribute("style", "background-color:#df1b1beb")
+          // updateBtn.setAttribute("disabled")
+        }
+        else {
+          error_box2.textContent = ""
+          updateBtn.classList.remove("moveit")
+          updateBtn.classList.add("sucess")
+          updateBtn.setAttribute("style", "background-color:#399a0cef")
+        }
+      }
+
+    })
+
+  </script>
+
+</body>
+
+</html>
